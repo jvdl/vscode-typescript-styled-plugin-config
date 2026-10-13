@@ -1,0 +1,327 @@
+{
+  "name": "vscode-typescript-styled-plugin-config",
+  "displayName": "TypeScript Styled Plugin Config",
+  "description": "Configure @styled/typescript-styled-plugin from VS Code settings instead of tsconfig.",
+  "version": "0.1.0",
+  "publisher": "jvdl",
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "url": "git@github.com:jvdl/vscode-typescript-styled-plugin-config.git",
+    "type": "git"
+  },
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "main": "./out/extension.js",
+  "extensionDependencies": [
+    "styled-components.vscode-styled-components"
+  ],
+  "activationEvents": [
+    "onLanguage:typescript",
+    "onLanguage:typescriptreact",
+    "onLanguage:javascript",
+    "onLanguage:javascriptreact"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "tsStyledPluginConfig.openSettings",
+        "title": "TypeScript Styled Plugin Config: Open Settings"
+      }
+    ],
+    "configuration": {
+      "title": "TypeScript Styled Plugin Config",
+      "properties": {
+        "tsStyledPluginConfig.enabled": {
+          "type": "boolean",
+          "default": true,
+          "order": 0,
+          "markdownDescription": "Send these settings to `@styled/typescript-styled-plugin`. Use this to configure how vscode-styled-components behaves."
+        },
+        "tsStyledPluginConfig.tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "styled",
+            "css",
+            "extend",
+            "injectGlobal",
+            "createGlobalStyle",
+            "keyframes"
+          ],
+          "order": 1,
+          "markdownDescription": "Template literal tag names that get styled-component IntelliSense."
+        },
+        "tsStyledPluginConfig.validate": {
+          "type": "boolean",
+          "default": true,
+          "order": 2,
+          "markdownDescription": "Report CSS errors. Set to `false` to disable all error reporting."
+        },
+        "tsStyledPluginConfig.lint.validProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "container",
+            "container-type",
+            "container-name"
+          ],
+          "order": 3,
+          "markdownDescription": "Properties that are treated as valid (e.g. `container-type`, `container-name`)."
+        },
+        "tsStyledPluginConfig.lint.unknownProperties": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "markdownDescription": "Should unknown properties show an error or warning?",
+          "order": 4
+        },
+        "tsStyledPluginConfig.lint.unknownAtRules": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "markdownDescription": "Should unknown at-rules (e.g. `@container`) show an error or warning?",
+          "order": 5
+        },
+        "tsStyledPluginConfig.lint.compatibleVendorPrefixes": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "When using a vendor-specific prefix make sure to also include all other vendor-specific properties.",
+          "order": 6
+        },
+        "tsStyledPluginConfig.lint.vendorPrefix": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "markdownDescription": "When using a vendor-specific prefix also include the standard property.",
+          "order": 7
+        },
+        "tsStyledPluginConfig.lint.duplicateProperties": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Do not use duplicate style definitions.",
+          "order": 8
+        },
+        "tsStyledPluginConfig.lint.emptyRules": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Do not use empty rulesets.",
+          "order": 9
+        },
+        "tsStyledPluginConfig.lint.importStatement": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Import statements do not load in parallel.",
+          "order": 10
+        },
+        "tsStyledPluginConfig.lint.boxModel": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Do not use width or height when using padding or border.",
+          "order": 11
+        },
+        "tsStyledPluginConfig.lint.universalSelector": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "The universal selector (`*`) is known to be slow.",
+          "order": 12
+        },
+        "tsStyledPluginConfig.lint.zeroUnits": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "No unit for zero needed.",
+          "order": 13
+        },
+        "tsStyledPluginConfig.lint.fontFaceProperties": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "markdownDescription": "`@font-face` rule must define `src` and `font-family` properties.",
+          "order": 14
+        },
+        "tsStyledPluginConfig.lint.hexColorLength": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "error",
+          "markdownDescription": "Hex colors must consist of three or six hex numbers.",
+          "order": 15
+        },
+        "tsStyledPluginConfig.lint.argumentsInColorFunction": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "error",
+          "markdownDescription": "Invalid number of parameters.",
+          "order": 16
+        },
+        "tsStyledPluginConfig.lint.ieHack": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "IE hacks are only necessary when supporting IE7 and older.",
+          "order": 17
+        },
+        "tsStyledPluginConfig.lint.unknownVendorSpecificProperties": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Unknown vendor specific property.",
+          "order": 18
+        },
+        "tsStyledPluginConfig.lint.propertyIgnoredDueToDisplay": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "warning",
+          "markdownDescription": "Property is ignored due to the display. E.g. with `display: inline`, the width, height, margin-top, margin-bottom, and float properties have no effect.",
+          "order": 19
+        },
+        "tsStyledPluginConfig.lint.important": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Avoid using `!important`.",
+          "order": 20
+        },
+        "tsStyledPluginConfig.lint.float": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Avoid using `float`.",
+          "order": 21
+        },
+        "tsStyledPluginConfig.lint.idSelector": {
+          "type": "string",
+          "enum": [
+            "ignore",
+            "warning",
+            "error"
+          ],
+          "default": "ignore",
+          "markdownDescription": "Selectors should not contain IDs.",
+          "order": 22
+        },
+        "tsStyledPluginConfig.emmet.showExpandedAbbreviation": {
+          "type": "string",
+          "enum": [
+            "always",
+            "never"
+          ],
+          "default": "always",
+          "order": 23,
+          "markdownDescription": "Show expanded Emmet abbreviations in the completion list."
+        },
+        "tsStyledPluginConfig.emmet.showSuggestionsAsSnippets": {
+          "type": "boolean",
+          "default": false,
+          "order": 24,
+          "markdownDescription": "Show Emmet suggestions as snippets, ordered by `editor.snippetSuggestions`."
+        },
+        "tsStyledPluginConfig.emmet.preferences": {
+          "type": "object",
+          "default": {},
+          "order": 25,
+          "markdownDescription": "Emmet preferences used by some actions and resolvers."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "tsc -p .",
+    "watch": "tsc -watch -p .",
+    "vscode:prepublish": "npm run compile",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "@types/vscode": "^1.80.0",
+    "@vscode/vsce": "^4.0.0",
+    "typescript": "^6.0.3"
+  },
+  "allowScripts": {
+    "@vscode/vsce@4.0.0": true,
+    "@vscode/vsce-sign@2.1.0": true
+  }
+}
